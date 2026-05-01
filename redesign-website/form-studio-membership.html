@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Studio — Membership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #ECE4D3;
+      --cream-warm: #F1EBDB;
+      --cream-deep: #E0D5BC;
+      --mustard: #D9A84C;
+      --mustard-deep: #B98A36;
+      --terracotta: #B5482C;
+      --clay-deep: #8E3A1F;
+      --walnut: #5C3925;
+      --oak: #C8A878;
+      --black-warm: #1A1815;
+      --charcoal: #2A2620;
+      --ink: #1F1A14;
+      --ink-muted: #635A4D;
+      --on-dark: #F1EBDB;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-script: 'Caveat', cursive;
+      --font-body: 'Outfit', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 24px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      mix-blend-mode: difference; color: white;
+    }
+    .brand {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 500; letter-spacing: 0.02em;
+      text-decoration: none; color: inherit;
+    }
+    .brand-script {
+      font-family: var(--font-script);
+      font-size: 30px; font-weight: 500;
+      margin-right: 2px; vertical-align: -2px;
+    }
+    .nav-links {
+      display: flex; gap: 40px; list-style: none;
+      font-size: 13px; letter-spacing: 0.08em;
+    }
+    .nav-links a { color: inherit; text-decoration: none; transition: opacity 0.3s; }
+    .nav-links a:hover { opacity: 0.6; }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 80vh; min-height: 600px;
+      overflow: hidden; background: var(--black-warm);
+      display: flex; align-items: center;
+    }
+    .hero-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.4;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(26,24,21,0.5) 0%, rgba(26,24,21,0.7) 50%, rgba(26,24,21,0.95) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2; width: 100%;
+      max-width: 1320px; margin: 0 auto; padding: 0 80px;
+      color: var(--on-dark);
+    }
+    .hero-eyebrow {
+      font-size: 12px; letter-spacing: 0.32em;
+      text-transform: uppercase; opacity: 0.75;
+      margin-bottom: 32px; font-weight: 500;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 80px; align-items: end;
+    }
+    .hero-number {
+      font-family: var(--font-display);
+      font-size: clamp(180px, 22vw, 360px);
+      font-weight: 400; line-height: 0.85;
+      letter-spacing: -0.05em;
+    }
+    .hero-numlabel {
+      font-size: 12px; letter-spacing: 0.24em;
+      text-transform: uppercase; opacity: 0.7;
+      margin-top: 16px; font-weight: 500;
+    }
+    .hero-text { padding-bottom: 24px; }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 4.5vw, 72px);
+      font-weight: 400; line-height: 1;
+      letter-spacing: -0.02em; margin-bottom: 20px;
+    }
+    .hero-title em { font-style: italic; }
+    .hero-sub {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 20px; opacity: 0.8; max-width: 38ch; line-height: 1.4;
+    }
+
+    /* PRICING SECTION (mustard background) */
+    .pricing {
+      padding: 160px 0;
+      background: var(--mustard);
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-header { text-align: center; margin-bottom: 72px; }
+    .pricing-eyebrow { display: block; margin-bottom: 16px; color: var(--clay-deep); }
+    .pricing-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6vw, 88px);
+      font-weight: 400; letter-spacing: -0.025em;
+      line-height: 1; color: var(--walnut); max-width: 14ch; margin: 0 auto;
+    }
+    .pricing-title em { font-style: italic; }
+
+    .pricing-card {
+      max-width: 720px; margin: 0 auto;
+      background: var(--cream-warm);
+      border-radius: 12px;
+      padding: 48px;
+      box-shadow: 0 30px 80px -20px rgba(31,26,20,0.2), 0 4px 12px rgba(31,26,20,0.06);
+    }
+
+    /* TOGGLE */
+    .tier-toggle {
+      display: flex;
+      background: var(--cream-deep);
+      border-radius: 80px;
+      padding: 4px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .tier-tab {
+      flex: 1;
+      padding: 14px 24px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      border-radius: 80px;
+      transition: color 0.3s ease;
+      z-index: 2;
+      position: relative;
+    }
+    .tier-tab.active { color: var(--ink); }
+    .tier-slider {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      bottom: 4px;
+      width: calc(50% - 4px);
+      background: var(--cream);
+      border-radius: 80px;
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(31,26,20,0.08);
+      z-index: 1;
+    }
+    .tier-toggle.trainer-active .tier-slider {
+      transform: translateX(100%);
+    }
+
+    /* PRICE */
+    .price-block { margin-bottom: 36px; }
+    .price-amount {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 7vw, 96px);
+      font-weight: 400; line-height: 1;
+      letter-spacing: -0.025em; color: var(--ink);
+      transition: opacity 0.3s ease;
+    }
+    .price-amount em {
+      font-style: italic; font-size: 0.5em;
+      font-weight: 400; color: var(--ink-muted);
+      margin-left: 4px;
+    }
+    .price-meta {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--ink-muted);
+      font-style: italic;
+      font-family: var(--font-display);
+    }
+
+    /* BENEFITS */
+    .benefits {
+      list-style: none;
+      margin: 0 0 32px;
+      border-top: 1px solid rgba(31,26,20,0.1);
+    }
+    .benefit {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(31,26,20,0.1);
+      font-size: 15px;
+      color: var(--ink);
+      position: relative;
+      padding-left: 28px;
+    }
+    .benefit::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--terracotta);
+      font-family: var(--font-display);
+    }
+    .benefit-group-title {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--terracotta);
+      padding: 24px 0 12px;
+      border-bottom: 1px solid rgba(31,26,20,0.1);
+    }
+    .trainer-benefits { display: none; }
+    .trainer-benefits.active { display: block; }
+
+    /* CTA */
+    .pricing-cta-wrap { text-align: center; }
+    .pricing-cta {
+      display: inline-flex;
+      align-items: center; gap: 10px;
+      padding: 18px 48px;
+      font-size: 12px; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 500;
+      color: var(--cream-warm);
+      background: var(--ink);
+      border: none; border-radius: 80px;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .pricing-cta:hover {
+      background: var(--terracotta);
+      transform: translateY(-2px);
+    }
+    .pricing-note {
+      max-width: 540px; margin: 32px auto 0;
+      text-align: center;
+      font-size: 13px;
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--clay-deep);
+    }
+
+    /* WHAT YOU GET DETAIL */
+    .detail {
+      padding: 160px 0;
+      background: var(--cream);
+    }
+    .detail-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .detail-img-wrap {
+      position: relative; aspect-ratio: 4/5; overflow: hidden;
+      border-radius: 8px 8px 240px 240px / 8px 8px 200px 200px;
+    }
+    .detail-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-text .eyebrow { display: block; margin-bottom: 32px; }
+    .detail-quote {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 3.6vw, 52px);
+      font-weight: 400; line-height: 1.1;
+      letter-spacing: -0.015em; margin-bottom: 32px;
+    }
+    .detail-quote em { font-style: italic; }
+    .detail-body {
+      font-size: 16px; line-height: 1.8;
+      color: var(--ink-muted); max-width: 48ch; margin-bottom: 20px;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 160px 0;
+      background: var(--cream-warm);
+    }
+    .faq-header { text-align: center; margin-bottom: 72px; }
+    .faq-eyebrow { display: block; margin-bottom: 16px; }
+    .faq-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6vw, 88px);
+      font-weight: 400; letter-spacing: -0.025em;
+      line-height: 1; color: var(--ink);
+    }
+    .faq-title em { font-style: italic; }
+    .faq-list {
+      max-width: 820px; margin: 0 auto;
+      border-top: 1px solid rgba(31,26,20,0.12);
+    }
+    .faq-item {
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(31,26,20,0.12);
+      cursor: pointer;
+    }
+    .faq-q {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 24px;
+      color: var(--ink);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      letter-spacing: -0.005em;
+    }
+    .faq-q::after {
+      content: '+';
+      font-family: var(--font-display);
+      font-style: normal;
+      font-size: 28px;
+      color: var(--terracotta);
+      font-weight: 400;
+      transition: transform 0.4s ease;
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-q::after { transform: rotate(45deg); }
+    .faq-a {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--ink-muted);
+      max-width: 60ch;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, margin-top 0.4s ease;
+    }
+    .faq-item.open .faq-a {
+      max-height: 400px;
+      margin-top: 16px;
+    }
+
+    /* CLOSING */
+    .closing {
+      padding: 200px 40px; background: var(--terracotta);
+      color: var(--cream-warm); text-align: center;
+    }
+    .closing-eyebrow {
+      color: rgba(241,235,219,0.7);
+      display: inline-block; margin-bottom: 32px;
+    }
+    .closing-title {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 7vw, 112px);
+      font-weight: 400; line-height: 0.95;
+      letter-spacing: -0.025em; max-width: 14ch; margin: 0 auto 48px;
+    }
+    .closing-title em { font-style: italic; }
+    .closing-cta {
+      display: inline-flex; gap: 10px; align-items: center;
+      padding: 20px 48px; font-size: 13px; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 500;
+      color: var(--cream-warm); background: transparent;
+      border: 1px solid rgba(241,235,219,0.5);
+      border-radius: 80px; text-decoration: none; transition: all 0.4s;
+    }
+    .closing-cta:hover {
+      background: var(--cream-warm); color: var(--terracotta);
+      border-color: var(--cream-warm);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 60px 40px; background: var(--black-warm);
+      color: rgba(241,235,219,0.6); font-size: 13px; text-align: center;
+    }
+    footer .brand-mark {
+      font-family: var(--font-display); font-size: 28px;
+      color: var(--cream-warm); margin-bottom: 16px; display: block;
+    }
+    footer .brand-mark .brand-script { font-family: var(--font-script); font-size: 38px; }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero-content { padding: 0 24px; }
+      .container { padding: 0 24px; }
+
+      .hero { height: auto; min-height: 540px; padding: 100px 0 60px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-number { font-size: clamp(140px, 32vw, 220px); }
+
+      .pricing { padding: 96px 0; }
+      .pricing-card { padding: 28px; }
+      .tier-tab { font-size: 10px; padding: 12px 8px; letter-spacing: 0.12em; }
+
+      .detail { padding: 96px 0; }
+      .detail-grid { grid-template-columns: 1fr; gap: 48px; }
+
+      .faq { padding: 96px 0; }
+      .faq-q { font-size: 18px; gap: 16px; }
+      .faq-q::after { font-size: 22px; }
+
+      .closing { padding: 120px 24px; }
+    }
+
+    .note {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      padding: 14px 60px 14px 20px;
+      backdrop-filter: blur(20px);
+      background: rgba(236, 228, 211, 0.92);
+      border-top: 1px solid rgba(31,26,20,0.1);
+      font-size: 12px; color: var(--ink-muted); line-height: 1.6;
+    }
+    .note strong { color: var(--ink); font-weight: 500; }
+    .note-close {
+      position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer;
+      font-size: 20px; color: var(--ink-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="form-studio-homepage.html" class="brand"><span class="brand-script">form</span> studio</a>
+    <ul class="nav-links">
+      <li><a href="form-studio-homepage.html#despre">Despre</a></li>
+      <li><a href="form-studio-homepage.html#spatiul">Spațiul</a></li>
+      <li><a href="form-studio-homepage.html#antrenori">Antrenori</a></li>
+      <li><a href="form-studio-homepage.html#programe">Programe</a></li>
+      <li><a href="#" style="border-bottom: 1px solid currentColor; padding-bottom: 2px;">Membri</a></li>
+      <li><a href="form-studio-homepage.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-img" src="./photos/hero-slider-1.jpeg" alt="Form Studio interior" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Membership · Limitat</span>
+      <div class="hero-grid">
+        <div>
+          <div class="hero-number">60</div>
+          <div class="hero-numlabel">membri activi · maximum</div>
+        </div>
+        <div class="hero-text">
+          <h1 class="hero-title">O singură <em>ofertă.</em><br />Aproape simplă.</h1>
+          <p class="hero-sub">Un abonament. O comunitate restrânsă. Fără tiers, fără tactici de upgrade. Doar accesul de care ai nevoie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING (mustard) -->
+  <section class="pricing">
+    <div class="container">
+      <div class="pricing-header">
+        <span class="eyebrow pricing-eyebrow">Tariful · 2026</span>
+        <h2 class="pricing-title">Acces complet, <em>fără surprize.</em></h2>
+      </div>
+
+      <div class="pricing-card">
+        <!-- Toggle -->
+        <div class="tier-toggle" id="toggle">
+          <span class="tier-slider"></span>
+          <button class="tier-tab active" data-tier="solo">Membership</button>
+          <button class="tier-tab" data-tier="trainer">Membership + Antrenor</button>
+        </div>
+
+        <!-- Price -->
+        <div class="price-block">
+          <div class="price-amount" id="price">
+            299 <em>RON / Lună</em>
+          </div>
+          <div class="price-meta" id="price-meta">Acces nelimitat la spațiu</div>
+        </div>
+
+        <!-- Benefits -->
+        <ul class="benefits">
+          <li class="benefit">Acces în studio la momentul ales de tine</li>
+          <li class="benefit">60 abonamente disponibile · maximum</li>
+          <li class="benefit">Coffee lounge & zone de relaxare</li>
+          <li class="benefit">Acces complet la echipamente</li>
+          <li class="benefit">Terasă & facilități premium</li>
+        </ul>
+
+        <!-- Trainer-only benefits (toggle) -->
+        <div class="trainer-benefits" id="trainerBenefits">
+          <div class="benefit-group-title">+ Antrenor personal</div>
+          <ul class="benefits" style="border-top: none; margin-bottom: 24px;">
+            <li class="benefit">Sesiuni de antrenament personal dedicate</li>
+            <li class="benefit">Program adaptat obiectivelor tale</li>
+            <li class="benefit">Ajustări constante în funcție de progres</li>
+            <li class="benefit">Progres monitorizat și măsurat metodic</li>
+            <li class="benefit">Alimentație adaptată și suport continuu</li>
+          </ul>
+        </div>
+
+        <!-- CTA -->
+        <div class="pricing-cta-wrap">
+          <a href="#contact" class="pricing-cta">Programează o vizită →</a>
+        </div>
+      </div>
+
+      <p class="pricing-note" id="pricingNote" style="display: none;">
+        Tariful include 25% reducere la antrenamentele personale, disponibilă doar pentru membri.
+      </p>
+    </div>
+  </section>
+
+  <!-- DETAIL -->
+  <section class="detail">
+    <div class="container">
+      <div class="detail-grid">
+        <div class="detail-text">
+          <span class="eyebrow">Ce înseamnă membership</span>
+          <h2 class="detail-quote">Un loc unde toată lumea te <em>cunoaște</em>.</h2>
+          <p class="detail-body">Cu 60 de membri activi, fiecare persoană contează. Antrenorii știu ce lucrezi, recepția te recunoaște, și nu trebuie să te grăbești să ajungi la echipament.</p>
+          <p class="detail-body">Membership-ul înseamnă acces continuu — vii când îți convine, te miști în ritmul tău, și pleci când ești gata. Fără rezervări complicate. Fără cozi.</p>
+        </div>
+        <div class="detail-img-wrap">
+          <img src="./photos/gallery-slider-4.jpeg" alt="Lounge area" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <div class="faq-header">
+        <span class="eyebrow faq-eyebrow">Întrebări</span>
+        <h2 class="faq-title">Înainte să <em>te decizi.</em></h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item open">
+          <div class="faq-q">Pot vizita studio-ul înainte să devin membru?<span></span></div>
+          <div class="faq-a">Da — recomandăm asta înainte de orice. Programezi o vizită, vezi spațiul, te întâlnești cu echipa, și vorbești despre ce-ți dorești. Fără presiune de cumpărare.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Cât durează abonamentul minim?<span></span></div>
+          <div class="faq-a">Abonamentul este lunar și se poate anula în orice moment. Nu lucrăm cu contracte de 6 sau 12 luni — credem că oamenii trebuie să rămână pentru că le place, nu pentru că s-au angajat.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Ce se întâmplă dacă cele 60 de locuri sunt ocupate?<span></span></div>
+          <div class="faq-a">Te adăugăm pe lista de așteptare și te anunțăm de îndată ce un loc se eliberează. În medie, lista se mișcă o dată pe lună.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Pot suspenda abonamentul temporar?<span></span></div>
+          <div class="faq-a">Da, până la 4 săptămâni pe an, fără cost. Pentru perioade mai lungi (concediu medical, deplasare prelungită), discutăm caz cu caz.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Cum funcționează rezervarea sesiunilor de antrenor personal?<span></span></div>
+          <div class="faq-a">Rezervi direct cu antrenorul ales prin aplicația noastră sau în recepție. Sesiunile sunt nominale — dacă ai pachetul cu antrenor, ai acces la programare prioritară.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing" id="contact">
+    <span class="eyebrow closing-eyebrow">Vino să vezi</span>
+    <h2 class="closing-title">Locul există. <em>Tu ești invitat.</em></h2>
+    <a href="#" class="closing-cta">Programează o vizită →</a>
+  </section>
+
+  <footer>
+    <span class="brand-mark"><span class="brand-script">form</span> studio</span>
+    <div>Alba Iulia · Boutique Fitness · 2026</div>
+  </footer>
+
+  <div class="note" id="note">
+    <strong>Membership page demo.</strong> Toggle between "Membership" and "Membership + Antrenor" to see the bundled price + extra benefits. No strikethrough discount theater — bundle price is shown plainly. FAQ uses serif italic Q + sans body A. Mustard background section mirrors the lounge wall color.
+    <button class="note-close" onclick="document.getElementById('note').style.display='none'">×</button>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('toggle');
+    const tabs = toggle.querySelectorAll('.tier-tab');
+    const priceEl = document.getElementById('price');
+    const priceMetaEl = document.getElementById('price-meta');
+    const trainerBenefits = document.getElementById('trainerBenefits');
+    const pricingNote = document.getElementById('pricingNote');
+
+    const tiers = {
+      solo: {
+        price: '299 <em>RON / Lună</em>',
+        meta: 'Acces nelimitat la spațiu'
+      },
+      trainer: {
+        price: '523<span style="font-size:0.6em">,25</span> <em>RON / Lună</em>',
+        meta: 'Membership + 1 sesiune personală pe săptămână'
+      }
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const tier = tab.getAttribute('data-tier');
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        toggle.classList.toggle('trainer-active', tier === 'trainer');
+        priceEl.innerHTML = tiers[tier].price;
+        priceMetaEl.textContent = tiers[tier].meta;
+        if (tier === 'trainer') {
+          trainerBenefits.classList.add('active');
+          pricingNote.style.display = 'block';
+        } else {
+          trainerBenefits.classList.remove('active');
+          pricingNote.style.display = 'none';
+        }
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

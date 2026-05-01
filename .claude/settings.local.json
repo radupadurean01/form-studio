@@ -3,7 +3,27 @@
     "allow": [
       "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
       "Bash(mv BRIEF.md /tmp/BRIEF.md)",
-      "Bash(mv IMPLEMENTATION.md /tmp/IMPLEMENTATION.md)"
+      "Bash(mv IMPLEMENTATION.md /tmp/IMPLEMENTATION.md)",
+      "Bash(mv /tmp/BRIEF.md .)",
+      "Bash(mv /tmp/IMPLEMENTATION.md .)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)",
+      "Bash(ls:*)",
+      "Bash(npx supabase:*)",
+      "WebFetch(domain:form-studio-c4fd9b-d9dd75852bf3967702b9.webflow.io)",
+      "Bash(rm:*)",
+      "Bash(node -e \"const path = require.resolve\\('next/cache'\\); console.log\\(path\\)\")",
+      "Bash(node -e \"const ts = require\\('fs'\\).readFileSync\\('node_modules/next/dist/server/web/spec-extension/revalidate-tag.d.ts','utf8'\\); console.log\\(ts\\)\")",
+      "Bash(node -e \"const fs=require\\('fs'\\); const files = require\\('child_process'\\).execSync\\('find node_modules/next -name \\\\\"*.d.ts\\\\\" -path \\\\\"*revalidate*\\\\\"',{encoding:'utf8'}\\); console.log\\(files\\)\")",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); const names = Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\('linked'\\) || k.toLowerCase\\(\\).includes\\('twitter'\\) || k.toLowerCase\\(\\).includes\\('facebook'\\)\\); console.log\\(names\\)\")",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); console.log\\(Object.keys\\(l\\).filter\\(k => /icon/i.test\\(k\\) === false\\).slice\\(0,20\\)\\)\")",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); console.log\\(Object.keys\\(l\\).filter\\(k => /link|twit|face|instagram/i.test\\(k\\)\\)\\)\")",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(grep -iE \"^\\(layout-grid|dumbbell\\)\\\\.mjs$\")",
+      "Bash(git check-ignore:*)",
+      "Bash(git add:*)"
     ]
   }
 }

@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Backgrounds */
+  --cream: #ECE4D3;
+  --cream-warm: #F1EBDB;
+  --cream-deep: #E0D5BC;
+
+  /* Accent surfaces */
+  --mustard: #D9A84C;
+  --mustard-deep: #B98A36;
+  --terracotta: #B5482C;
+  --clay-deep: #8E3A1F;
+
+  /* Wood / earth */
+  --walnut: #5C3925;
+  --oak: #C8A878;
+  --oak-light: #D9BE8E;
+
+  /* Neutrals */
+  --black-warm: #1A1815;
+  --charcoal: #2A2620;
+  --ink: #1F1A14;
+  --ink-muted: #635A4D;
+  --on-dark: #F1EBDB;
+
+  /* Plant accent */
+  --green-leaf: #4A6B3A;
+
+  /* Admin theme aliases — admin shell predates the redesign palette */
+  --foreground: var(--ink);
+  --muted: var(--ink-muted);
+  --accent: var(--terracotta);
+  --sage: #6B8557;
+  --sage-light: #E5EBD8;
 }
 
 @theme inline {
-  --color-background: var(--background);
+  --color-cream: var(--cream);
+  --color-cream-warm: var(--cream-warm);
+  --color-cream-deep: var(--cream-deep);
+  --color-mustard: var(--mustard);
+  --color-mustard-deep: var(--mustard-deep);
+  --color-terracotta: var(--terracotta);
+  --color-clay-deep: var(--clay-deep);
+  --color-walnut: var(--walnut);
+  --color-oak: var(--oak);
+  --color-oak-light: var(--oak-light);
+  --color-black-warm: var(--black-warm);
+  --color-charcoal: var(--charcoal);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-on-dark: var(--on-dark);
+  --color-green-leaf: var(--green-leaf);
+
+  /* Admin aliases */
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-sage: var(--sage);
+  --color-sage-light: var(--sage-light);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-script: var(--font-script);
+  --font-heading: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Admin input base */
+.input {
+  @apply w-full text-sm px-4 py-3 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-mustard/30 focus:border-mustard transition-colors;
+  font-family: var(--font-body), sans-serif;
+}
+
+/* Hide scrollbar for gallery carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
