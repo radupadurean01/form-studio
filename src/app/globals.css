@@ -89,6 +89,67 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-body), sans-serif;
 }
 
+/* Legal pages — typography for the HTML coming from the DB */
+.legal-content h1 {
+  font-size: 1.875rem;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 640px) {
+  .legal-content h1 {
+    font-size: 2.25rem;
+  }
+}
+.legal-content h2 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+@media (min-width: 640px) {
+  .legal-content h2 {
+    font-size: 1.875rem;
+  }
+}
+.legal-content h3 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.legal-content p {
+  font-family: var(--font-body), sans-serif;
+  color: var(--ink-muted);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.legal-content ul,
+.legal-content ol {
+  font-family: var(--font-body), sans-serif;
+  color: var(--ink-muted);
+  line-height: 1.7;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.legal-content ul {
+  list-style: disc;
+}
+.legal-content ol {
+  list-style: decimal;
+}
+.legal-content li {
+  margin-bottom: 0.25rem;
+}
+.legal-content strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.legal-content a {
+  color: var(--terracotta);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.legal-content a:hover {
+  color: var(--clay-deep);
+}
+
 /* Hide scrollbar for gallery carousel */
 .scrollbar-hide {
   -ms-overflow-style: none;

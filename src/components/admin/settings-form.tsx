@@ -6,7 +6,19 @@ import type { SiteSettings } from "@/lib/supabase/types";
 import { updateSettings } from "@/app/admin/actions";
 import { ImageUploader } from "./image-uploader";
 
-type FormState = Omit<SiteSettings, "id" | "created_at" | "updated_at">;
+// Legal fields are managed in /admin/legal, not here.
+type FormState = Omit<
+  SiteSettings,
+  | "id"
+  | "created_at"
+  | "updated_at"
+  | "legal_license_html"
+  | "legal_license_approved"
+  | "legal_privacy_html"
+  | "legal_privacy_approved"
+  | "legal_cookies_html"
+  | "legal_cookies_approved"
+>;
 
 export function SettingsForm({ settings }: { settings: SiteSettings }) {
   const router = useRouter();
@@ -361,3 +373,4 @@ function Html({
     </div>
   );
 }
+

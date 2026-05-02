@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getSettings } from "@/lib/queries";
+import { PlaceholderBanner } from "@/components/placeholder-banner";
 
 export const metadata: Metadata = {
   title: "Politică de confidențialitate — Form Studio",
@@ -10,11 +11,14 @@ export const metadata: Metadata = {
 export default async function PrivacyPage() {
   const settings = await getSettings();
   return (
-    <div
-      className="legal-content"
-      dangerouslySetInnerHTML={{
-        __html: settings?.legal_privacy_html ?? "",
-      }}
-    />
+    <>
+      {!settings?.legal_privacy_approved && <PlaceholderBanner />}
+      <div
+        className="legal-content"
+        dangerouslySetInnerHTML={{
+          __html: settings?.legal_privacy_html ?? "",
+        }}
+      />
+    </>
   );
 }

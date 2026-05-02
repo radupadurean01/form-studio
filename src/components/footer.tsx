@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getSettings } from "@/lib/queries";
 
 function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -86,6 +87,26 @@ export async function Footer() {
           ))}
         </div>
       )}
+      <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-5 font-body text-sm">
+        <Link
+          href="/license"
+          className="text-on-dark/60 hover:text-on-dark transition-colors"
+        >
+          Termeni și condiții
+        </Link>
+        <Link
+          href="/privacy"
+          className="text-on-dark/60 hover:text-on-dark transition-colors"
+        >
+          Confidențialitate
+        </Link>
+        <Link
+          href="/cookies"
+          className="text-on-dark/60 hover:text-on-dark transition-colors"
+        >
+          Cookie-uri
+        </Link>
+      </nav>
       <div className="font-body text-[13px]">
         {settings?.footer_tagline ?? "Form Studio"} ·{" "}
         {new Date().getFullYear()}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getSettings } from "@/lib/queries";
+import { PlaceholderBanner } from "@/components/placeholder-banner";
 
 export const metadata: Metadata = {
   title: "Termeni și condiții — Form Studio",
@@ -10,11 +11,14 @@ export const metadata: Metadata = {
 export default async function LicensePage() {
   const settings = await getSettings();
   return (
-    <div
-      className="legal-content"
-      dangerouslySetInnerHTML={{
-        __html: settings?.legal_license_html ?? "",
-      }}
-    />
+    <>
+      {!settings?.legal_license_approved && <PlaceholderBanner />}
+      <div
+        className="legal-content"
+        dangerouslySetInnerHTML={{
+          __html: settings?.legal_license_html ?? "",
+        }}
+      />
+    </>
   );
 }
