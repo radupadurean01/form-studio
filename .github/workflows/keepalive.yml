@@ -1,0 +1,16 @@
+name: Keep Supabase alive
+
+on:
+  schedule:
+    # Luni și joi la 09:00 UTC (12:00 RO vara, 11:00 iarna)
+    - cron: "0 9 * * 1,4"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping heartbeat endpoint
+        run: |
+          curl -fsS --retry 3 --retry-delay 10 \
+            "${{ vars.SITE_URL || 'https://formstudio.ro' }}/api/heartbeat"
