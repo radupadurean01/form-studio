@@ -26,6 +26,9 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://formstudio.ro"
+  ),
   title: "Form Studio",
   description:
     "Form Studio este un spațiu gândit pentru oameni care vor să se miște bine, să se simtă bine și să nu fie judecați.",
