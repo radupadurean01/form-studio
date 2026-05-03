@@ -1,6 +1,7 @@
 import { Container } from "./container";
 import { Section } from "./section";
 import { Eyebrow } from "./eyebrow";
+import { RevealStagger, RevealItem } from "./reveal";
 import { ContactForm } from "./contact-form";
 import { getSettings } from "@/lib/queries";
 
@@ -10,9 +11,9 @@ export async function Contact() {
   return (
     <Section id="contact" className="bg-cream">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <RevealStagger className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Text */}
-          <div>
+          <RevealItem>
             {settings?.contact_eyebrow && (
               <Eyebrow className="mb-8">{settings.contact_eyebrow}</Eyebrow>
             )}
@@ -54,11 +55,13 @@ export async function Contact() {
                 )}
               </div>
             )}
-          </div>
+          </RevealItem>
 
           {/* Form */}
-          <ContactForm />
-        </div>
+          <RevealItem>
+            <ContactForm />
+          </RevealItem>
+        </RevealStagger>
       </Container>
     </Section>
   );

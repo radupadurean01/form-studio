@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -24,6 +25,7 @@ export function Header({
   const [mobileOpen, setMobileOpen] = useState(false);
   const [pastHero, setPastHero] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const reduced = useReducedMotion();
 
   useEffect(() => {
     const hero = document.getElementById("hero");
@@ -48,14 +50,29 @@ export function Header({
       .filter((el): el is HTMLElement => el !== null);
     if (sections.length === 0) return;
 
+    // Track which sections are currently in the band. The IntersectionObserver
+    // callback only delivers entries that *changed* — so we need our own state
+    // to know what's still intersecting. Without this, scrolling back up to
+    // the hero leaves the last-active section stuck as "active".
+    const intersecting = new Set<string>();
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible.length > 0) {
-          setActiveSection(visible[0].target.id);
-        }
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            intersecting.add(entry.target.id);
+          } else {
+            intersecting.delete(entry.target.id);
+          }
+        });
+
+        // Pick the first nav section in document order that's in the band.
+        // Empty string when nothing is in the band (e.g., over the hero).
+        const next =
+          navLinks
+            .find((l) => intersecting.has(l.href.slice(1)))
+            ?.href.slice(1) ?? "";
+        setActiveSection(next);
       },
       { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
     );
@@ -66,7 +83,12 @@ export function Header({
 
   return (
     <header className="fixed top-0 left-0 right-0 z-[100] pt-4">
-      <div className="mx-auto w-full max-w-[1320px] px-6 sm:px-10">
+      <motion.div
+        className="mx-auto w-full max-w-[1320px] px-6 sm:px-10"
+        initial={reduced ? false : { y: -32, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+      >
         <nav
           className={`
             flex items-center justify-between
@@ -138,7 +160,7 @@ export function Header({
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
         </nav>
-      </div>
+      </motion.div>
 
       {/* Mobile nav overlay */}
       {mobileOpen && (

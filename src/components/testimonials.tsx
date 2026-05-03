@@ -2,6 +2,7 @@ import { Star } from "lucide-react";
 import { Container } from "./container";
 import { Section } from "./section";
 import { Eyebrow } from "./eyebrow";
+import { Reveal, RevealStagger, RevealItem } from "./reveal";
 import { getTestimonials, getSettings } from "@/lib/queries";
 
 export async function Testimonials() {
@@ -15,14 +16,14 @@ export async function Testimonials() {
   return (
     <Section id="testimoniale" className="bg-cream">
       <Container>
-        <div className="text-center mb-16 sm:mb-20">
+        <Reveal className="text-center mb-16 sm:mb-20">
           <Eyebrow className="mb-4">Testimoniale</Eyebrow>
           <h2 className="font-display text-[clamp(48px,6vw,88px)] font-normal tracking-tight leading-none max-w-[14ch] mx-auto">
             Ce spun <em className="italic">membrii.</em>
           </h2>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <RevealStagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {testimonials.map((t) => {
             const initials = t.author_name
               .split(" ")
@@ -30,7 +31,7 @@ export async function Testimonials() {
               .join("")
               .slice(0, 2);
             return (
-              <article
+              <RevealItem
                 key={t.id}
                 className="group bg-cream-warm rounded-2xl p-7 sm:p-8 flex flex-col transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:-translate-y-1 hover:shadow-[0_24px_48px_-24px_rgba(31,26,20,0.18)]"
               >
@@ -72,10 +73,10 @@ export async function Testimonials() {
                     )}
                   </div>
                 </div>
-              </article>
+              </RevealItem>
             );
           })}
-        </div>
+        </RevealStagger>
       </Container>
     </Section>
   );

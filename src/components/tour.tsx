@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Container } from "./container";
 import { Section } from "./section";
 import { Eyebrow } from "./eyebrow";
+import { Reveal, RevealStagger, RevealItem } from "./reveal";
 import { getTourTiles, getSettings } from "@/lib/queries";
 
 export async function Tour() {
@@ -11,7 +12,7 @@ export async function Tour() {
   return (
     <Section id="spatiul" className="bg-cream-warm">
       <Container>
-        <div className="text-center mb-16 sm:mb-20">
+        <Reveal className="text-center mb-16 sm:mb-20">
           {settings?.tour_eyebrow && (
             <Eyebrow className="mb-4">{settings.tour_eyebrow}</Eyebrow>
           )}
@@ -21,12 +22,12 @@ export async function Tour() {
               dangerouslySetInnerHTML={{ __html: settings.tour_title_html }}
             />
           )}
-        </div>
+        </Reveal>
 
         {/* Bento grid — 6 columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-6 auto-rows-[260px] gap-4">
+        <RevealStagger className="grid grid-cols-1 sm:grid-cols-6 auto-rows-[260px] gap-4">
           {tiles.map((tile) => (
-            <div
+            <RevealItem
               key={tile.id}
               className={`relative overflow-hidden rounded-2xl bg-charcoal group ${tile.span_class}`}
             >
@@ -58,9 +59,9 @@ export async function Tour() {
                   {tile.title}
                 </span>
               </div>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealStagger>
       </Container>
     </Section>
   );

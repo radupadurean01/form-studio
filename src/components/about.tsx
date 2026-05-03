@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Container } from "./container";
 import { Section } from "./section";
 import { Eyebrow } from "./eyebrow";
+import { RevealStagger, RevealItem } from "./reveal";
 import { getSettings } from "@/lib/queries";
 
 export async function About() {
@@ -11,9 +12,9 @@ export async function About() {
   return (
     <Section id="despre" className="bg-cream">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <RevealStagger className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image — organic blob mask */}
-          <div
+          <RevealItem
             className="relative aspect-[4/5] overflow-hidden"
             style={{ clipPath: "url(#blob-1)" }}
           >
@@ -26,10 +27,10 @@ export async function About() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
             )}
-          </div>
+          </RevealItem>
 
           {/* Text */}
-          <div>
+          <RevealItem>
             <Eyebrow className="mb-8">Despre noi</Eyebrow>
             <h2
               className="font-display text-[clamp(36px,4.2vw,64px)] font-normal leading-[1.05] tracking-tight mb-10"
@@ -45,8 +46,8 @@ export async function About() {
                 {settings.about_signature}
               </span>
             )}
-          </div>
-        </div>
+          </RevealItem>
+        </RevealStagger>
       </Container>
     </Section>
   );

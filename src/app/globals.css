@@ -70,6 +70,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Respect users who set "reduce motion" in their OS — instant scroll, no animation */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   font-family: var(--font-body), sans-serif;
   background: var(--cream);

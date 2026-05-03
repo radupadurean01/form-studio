@@ -1,6 +1,7 @@
 import { Eyebrow } from "./eyebrow";
 import { Container } from "./container";
 import { Section } from "./section";
+import { Reveal } from "./reveal";
 import { ProgramsList } from "./programs-list";
 import { getPrograms, getSettings } from "@/lib/queries";
 
@@ -14,7 +15,7 @@ export async function Programs() {
   return (
     <Section id="programe" className="bg-cream-warm">
       <Container>
-        <div className="mb-16 sm:mb-20">
+        <Reveal className="mb-16 sm:mb-20">
           {settings?.programs_eyebrow && (
             <Eyebrow className="mb-4">{settings.programs_eyebrow}</Eyebrow>
           )}
@@ -26,7 +27,7 @@ export async function Programs() {
               }}
             />
           )}
-        </div>
+        </Reveal>
 
         <ProgramsList programs={programs} />
       </Container>

@@ -1,5 +1,6 @@
 import { Eyebrow } from "./eyebrow";
 import { Button } from "./button";
+import { RevealItem, RevealStagger } from "./reveal";
 import { getSettings } from "@/lib/queries";
 
 export async function MembershipPreview() {
@@ -40,9 +41,12 @@ export async function MembershipPreview() {
 
         {/* Content — bottom-aligned cluster */}
         <div className="relative z-10 h-full max-w-[1320px] mx-auto px-6 sm:px-10 lg:px-20 flex flex-col justify-end py-16 lg:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-12 lg:gap-20 items-end">
+          <RevealStagger
+            className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-12 lg:gap-20 items-end"
+            stagger={0.12}
+          >
             {/* Big number */}
-            <div>
+            <RevealItem>
               <div className="font-display text-[clamp(160px,18vw,280px)] font-normal leading-[0.85] tracking-[-0.05em]">
                 {settings.membership_preview_number}
               </div>
@@ -51,10 +55,10 @@ export async function MembershipPreview() {
                   {settings.membership_preview_max_label}
                 </div>
               )}
-            </div>
+            </RevealItem>
 
             {/* Text + CTA */}
-            <div className="max-w-[440px] pb-3">
+            <RevealItem className="max-w-[440px] pb-3">
               {settings.membership_preview_eyebrow && (
                 <Eyebrow tone="dark" className="mb-5">
                   {settings.membership_preview_eyebrow}
@@ -81,8 +85,8 @@ export async function MembershipPreview() {
                   {settings.membership_preview_cta_label}
                 </Button>
               )}
-            </div>
-          </div>
+            </RevealItem>
+          </RevealStagger>
         </div>
       </div>
     </section>
