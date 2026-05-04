@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Plus,
@@ -30,6 +30,10 @@ export function TestimonialsManager({
   const [editing, setEditing] = useState<Testimonial | null>(null);
   const [creating, setCreating] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setItems(initialTestimonials);
+  }, [initialTestimonials]);
 
   // Form state
   const [authorName, setAuthorName] = useState("");
@@ -101,6 +105,11 @@ export function TestimonialsManager({
   }
 
   async function handleToggle(t: Testimonial) {
+    setItems(
+      items.map((item) =>
+        item.id === t.id ? { ...item, published: !item.published } : item
+      )
+    );
     await updateTestimonial(t.id, { published: !t.published });
     router.refresh();
   }
@@ -189,7 +198,7 @@ export function TestimonialsManager({
                 <div className="flex items-center gap-1">
                   <button onClick={() => handleMove(i, "up")} disabled={i === 0} className="p-1.5 rounded hover:bg-gray-100 disabled:opacity-30 transition-colors"><ChevronUp size={16} /></button>
                   <button onClick={() => handleMove(i, "down")} disabled={i === items.length - 1} className="p-1.5 rounded hover:bg-gray-100 disabled:opacity-30 transition-colors"><ChevronDown size={16} /></button>
-                  <button onClick={() => handleToggle(t)} className="p-1.5 rounded hover:bg-gray-100 transition-colors">
+                  <button onClick={() => handleToggle(t)} className="p-1.5 rounded hover:bg-gray-100 transition-colors" title={t.published ? "Ascunde de pe site" : "Publică pe site"}>
                     {t.published ? <Eye size={16} className="text-sage" /> : <EyeOff size={16} className="text-muted" />}
                   </button>
                   <button onClick={() => openEdit(t)} className="p-1.5 rounded hover:bg-gray-100 transition-colors"><Pencil size={16} /></button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, Pencil, Trash2, ChevronUp, ChevronDown } from "lucide-react";
 import type { TourTile } from "@/lib/supabase/types";
@@ -31,6 +31,10 @@ export function TourTilesManager({
   const [editing, setEditing] = useState<TourTile | null>(null);
   const [creating, setCreating] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setTiles(initialTiles);
+  }, [initialTiles]);
 
   const [imageUrl, setImageUrl] = useState("");
   const [eyebrow, setEyebrow] = useState("");

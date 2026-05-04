@@ -1,19 +1,12 @@
 import { createClient } from "@/lib/supabase/server";
-import {
-  Users,
-  CreditCard,
-  MessageSquare,
-  LayoutGrid,
-  Dumbbell,
-} from "lucide-react";
+import { Users, CreditCard, MessageSquare, Dumbbell } from "lucide-react";
 
 async function getCounts() {
   const supabase = await createClient();
 
-  const [team, memberships, tour, programs, submissions] = await Promise.all([
+  const [team, memberships, programs, submissions] = await Promise.all([
     supabase.from("team_members").select("id", { count: "exact", head: true }),
     supabase.from("memberships").select("id", { count: "exact", head: true }),
-    supabase.from("tour_tiles").select("id", { count: "exact", head: true }),
     supabase.from("programs").select("id", { count: "exact", head: true }),
     supabase
       .from("contact_submissions")
@@ -24,7 +17,6 @@ async function getCounts() {
   return {
     team: team.count ?? 0,
     memberships: memberships.count ?? 0,
-    tour: tour.count ?? 0,
     programs: programs.count ?? 0,
     unreadSubmissions: submissions.count ?? 0,
   };
@@ -42,7 +34,6 @@ async function getRecentSubmissions() {
 
 const statCards = [
   { key: "team" as const, label: "Antrenori", icon: Users },
-  { key: "tour" as const, label: "Studio (bento)", icon: LayoutGrid },
   { key: "programs" as const, label: "Programe", icon: Dumbbell },
   { key: "memberships" as const, label: "Memberships", icon: CreditCard },
   {

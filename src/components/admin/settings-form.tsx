@@ -18,6 +18,7 @@ type FormState = Omit<
   | "legal_privacy_approved"
   | "legal_cookies_html"
   | "legal_cookies_approved"
+  | "trainers_footnote"
 >;
 
 export function SettingsForm({ settings }: { settings: SiteSettings }) {
@@ -43,7 +44,6 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
     trainers_eyebrow: settings.trainers_eyebrow,
     trainers_title_html: settings.trainers_title_html,
     trainers_subtitle: settings.trainers_subtitle,
-    trainers_footnote: settings.trainers_footnote,
     programs_eyebrow: settings.programs_eyebrow,
     programs_title_html: settings.programs_title_html,
     membership_preview_eyebrow: settings.membership_preview_eyebrow,
@@ -180,7 +180,6 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         <Text label="Eyebrow" value={form.trainers_eyebrow} onChange={(v) => update("trainers_eyebrow", v)} />
         <Html label="Titlu secțiune" value={form.trainers_title_html} onChange={(v) => update("trainers_title_html", v)} />
         <Textarea label="Subtitlu" value={form.trainers_subtitle} onChange={(v) => update("trainers_subtitle", v)} rows={2} />
-        <Textarea label="Notă (sub grilă)" value={form.trainers_footnote} onChange={(v) => update("trainers_footnote", v)} rows={2} />
       </Card>
 
       {/* Programs */}

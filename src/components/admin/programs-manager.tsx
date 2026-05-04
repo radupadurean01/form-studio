@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, Pencil, Trash2, ChevronUp, ChevronDown } from "lucide-react";
 import type { Program } from "@/lib/supabase/types";
@@ -22,6 +22,10 @@ export function ProgramsManager({
   const [editing, setEditing] = useState<Program | null>(null);
   const [creating, setCreating] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setItems(initialPrograms);
+  }, [initialPrograms]);
 
   const [num, setNum] = useState("");
   const [title, setTitle] = useState("");

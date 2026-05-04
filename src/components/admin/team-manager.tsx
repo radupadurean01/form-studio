@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Plus,
@@ -30,6 +30,10 @@ export function TeamManager({
   const [editing, setEditing] = useState<TeamMember | null>(null);
   const [creating, setCreating] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setMembers(initialMembers);
+  }, [initialMembers]);
 
   async function handleCreate(data: Omit<TeamMember, "id" | "created_at" | "updated_at">) {
     setLoading(true);
@@ -63,6 +67,11 @@ export function TeamManager({
   }
 
   async function handleTogglePublished(member: TeamMember) {
+    setMembers(
+      members.map((m) =>
+        m.id === member.id ? { ...m, published: !m.published } : m
+      )
+    );
     await updateTeamMember(member.id, { published: !member.published });
     router.refresh();
   }
@@ -160,7 +169,7 @@ export function TeamManager({
               <button
                 onClick={() => handleTogglePublished(member)}
                 className="p-1.5 rounded hover:bg-gray-100 transition-colors"
-                title={member.published ? "Ascunde" : "Publică"}
+                title={member.published ? "Ascunde de pe site" : "Publică pe site"}
               >
                 {member.published ? (
                   <Eye size={16} className="text-sage" />
