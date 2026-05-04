@@ -9,7 +9,7 @@ export async function MembershipPreview() {
 
   return (
     <section id="membri-preview" className="bg-cream-warm">
-      <div className="relative h-[70vh] min-h-[560px] overflow-hidden bg-black-warm text-on-dark">
+      <div className="relative h-[820px] lg:h-[70vh] lg:min-h-[560px] overflow-hidden bg-black-warm text-on-dark">
         {/* Background photo with parallax (fixed to viewport) — section becomes a window onto the image */}
         {settings.membership_preview_bg_image_url && (
           <div
@@ -40,7 +40,7 @@ export async function MembershipPreview() {
         />
 
         {/* Content — bottom-aligned cluster */}
-        <div className="relative z-10 h-full max-w-[1320px] mx-auto px-6 sm:px-10 lg:px-20 flex flex-col justify-end py-16 lg:py-20">
+        <div className="relative z-10 h-full max-w-[1320px] mx-auto px-6 sm:px-10 lg:px-20 flex flex-col justify-center lg:justify-end pt-16 pb-8 lg:py-20">
           <RevealStagger
             className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-12 lg:gap-20 items-end"
             stagger={0.12}
