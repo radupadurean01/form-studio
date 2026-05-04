@@ -20,10 +20,15 @@ export function ProgramsList({ programs }: { programs: Program[] }) {
             }`}
           >
             {/* Active dot */}
-            {i === active && (
-              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-terracotta" />
-            )}
-            <span className="font-display italic text-sm text-terracotta block mb-1.5">
+            <span
+              className={`absolute left-0 top-1/2 w-2 h-2 rounded-full bg-terracotta transition-all duration-500 ${
+                i === active
+                  ? "opacity-100 -translate-y-1/2 translate-x-0"
+                  : "opacity-0 -translate-y-1/2 -translate-x-2"
+              }`}
+            />
+
+            <span className="font-display italic text-3xl lg:text-4xl text-terracotta block mb-3">
               — {prog.num}
             </span>
             <h3 className="font-display text-[28px] lg:text-[36px] font-medium tracking-tight mb-2">

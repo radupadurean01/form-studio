@@ -50,12 +50,15 @@ export function TrainersGrid({ members }: { members: TeamMember[] }) {
 
   return (
     <>
-      <RevealStagger className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
+      <RevealStagger className="flex flex-wrap justify-center gap-6 lg:gap-8">
         {members.map((member, idx) => {
           const blobId = `blob-${(idx % blobCount) + 1}`;
           const displayPhoto = photoFor(member, idx);
           return (
-            <RevealItem key={member.id}>
+            <RevealItem
+              key={member.id}
+              className="basis-[calc(50%-12px)] sm:basis-[calc(33.333%-16px)] lg:basis-[calc(33.333%-21.334px)]"
+            >
               <button
                 type="button"
                 onClick={() => setActiveIdx(idx)}
@@ -105,7 +108,7 @@ export function TrainersGrid({ members }: { members: TeamMember[] }) {
               exit={{ opacity: 0, y: 24 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-cream rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+              className="relative bg-cream rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
             >
               <button
                 ref={closeBtnRef}
@@ -117,7 +120,7 @@ export function TrainersGrid({ members }: { members: TeamMember[] }) {
                 <X size={18} />
               </button>
 
-              <div className="grid sm:grid-cols-[280px_1fr] gap-8 p-6 sm:p-8">
+              <div className="grid sm:grid-cols-[320px_1fr] gap-8 p-6 sm:p-8">
                 {/* Photo with the same blob mask as the card */}
                 <div
                   className="relative w-full bg-cream-deep overflow-hidden aspect-[4/5] sm:aspect-auto sm:h-full sm:min-h-[400px]"

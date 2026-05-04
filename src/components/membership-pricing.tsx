@@ -123,21 +123,21 @@ export function MembershipPricing({
                         {membership.price_ron} RON
                       </span>
                     )}
-                    <span className="font-display text-[28px] sm:text-[32px] font-medium tracking-tight">
+                    <span className="font-display text-[36px] sm:text-[44px] font-medium tracking-tight">
                       {hasPercentDiscount
                         ? discountedPrice
                         : membership.addon_price_ron}{" "}
                       RON
-                      <em className="italic text-[0.55em] text-ink-muted font-normal ml-1">
+                      <em className="italic text-[0.5em] text-ink-muted font-normal ml-1">
                         / {membership.period}
                       </em>
-                      <sup className="text-[0.5em] text-terracotta ml-0.5">
+                      <sup className="text-[0.45em] text-terracotta ml-0.5">
                         *
                       </sup>
                     </span>
                   </div>
                   {settings.pricing_addon_footnote && (
-                    <p className="font-display italic text-[12px] text-ink-muted mt-3">
+                    <p className="font-display italic text-[14px] text-ink-muted mt-3">
                       {settings.pricing_addon_footnote}
                     </p>
                   )}
