@@ -33,16 +33,6 @@ export async function Contact() {
             {settings && (
               <div className="font-body text-sm text-ink-muted space-y-2">
                 {settings.address && <p>{settings.address}</p>}
-                {settings.contact_email && (
-                  <p>
-                    <a
-                      href={`mailto:${settings.contact_email}`}
-                      className="hover:text-terracotta transition-colors"
-                    >
-                      {settings.contact_email}
-                    </a>
-                  </p>
-                )}
                 {settings.contact_phone && (
                   <p>
                     <a

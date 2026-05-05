@@ -33,7 +33,6 @@ export default async function Home() {
     url: baseUrl,
     image: `${baseUrl}/opengraph-image`,
     ...(settings?.address && { address: settings.address }),
-    ...(settings?.contact_email && { email: settings.contact_email }),
     ...(settings?.contact_phone && { telephone: settings.contact_phone }),
     ...(sameAs.length > 0 && { sameAs }),
   };

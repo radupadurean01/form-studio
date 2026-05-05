@@ -223,10 +223,13 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         <Text label="Eyebrow" value={form.contact_eyebrow} onChange={(v) => update("contact_eyebrow", v)} />
         <Html label="Titlu secțiune" value={form.contact_title_html} onChange={(v) => update("contact_title_html", v)} />
         <Textarea label="Text scurt deasupra formularului" value={form.contact_body} onChange={(v) => update("contact_body", v)} rows={2} />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Text type="email" label="Email" value={form.contact_email} onChange={(v) => update("contact_email", v)} />
-          <Text label="Telefon" value={form.contact_phone} onChange={(v) => update("contact_phone", v)} />
+        <div>
+          <Text type="email" label="Email pentru notificări (formular contact)" value={form.contact_email} onChange={(v) => update("contact_email", v)} />
+          <p className="font-body text-sm text-muted mt-1.5">
+            Aici vor ajunge mesajele trimise prin formularul de contact. Nu este afișat public pe site.
+          </p>
         </div>
+        <Text label="Telefon" value={form.contact_phone} onChange={(v) => update("contact_phone", v)} />
         <Text label="Adresă" value={form.address} onChange={(v) => update("address", v)} />
       </Card>
 
