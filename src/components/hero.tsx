@@ -18,6 +18,12 @@ export async function Hero() {
       {/* Background slider */}
       <HeroSlider slides={slides} />
 
+      {/* Flat overlay — boosts contrast across the entire hero for legibility */}
+      <div
+        className="absolute inset-0 pointer-events-none bg-ink/40"
+        aria-hidden
+      />
+
       {/* Glassy gradient — image clear at top, frosted dark at bottom for text legibility */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -44,7 +50,7 @@ export async function Hero() {
       >
         {/* Eyebrow */}
         <RevealItem className="self-start">
-          <span className="inline-flex items-center px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm text-[12px] tracking-[0.32em] uppercase font-medium mb-6">
+          <span className="inline-flex items-center px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm text-[10px] sm:text-[12px] tracking-[0.32em] uppercase font-medium mb-6">
             {settings.hero_eyebrow}
           </span>
         </RevealItem>

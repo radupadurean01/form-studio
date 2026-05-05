@@ -10,11 +10,11 @@ export async function MembershipPreview() {
   return (
     <section id="membri-preview" className="bg-cream-warm">
       <div className="relative h-[820px] lg:h-[70vh] lg:min-h-[560px] overflow-hidden bg-black-warm text-on-dark">
-        {/* Background photo with parallax (fixed to viewport) — section becomes a window onto the image */}
+        {/* Background photo with parallax (fixed to viewport on desktop; mobile browsers ignore bg-fixed) */}
         {settings.membership_preview_bg_image_url && (
           <div
             aria-hidden
-            className="absolute inset-0 bg-fixed bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center lg:bg-fixed"
             style={{
               backgroundImage: `url('${settings.membership_preview_bg_image_url}')`,
             }}

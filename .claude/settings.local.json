@@ -28,7 +28,9 @@
       "Bash(git remote:*)",
       "Bash(git push:*)",
       "Bash(node -e \"console.log\\(require\\('fs'\\).readFileSync\\('src/components/programs.tsx', 'utf8'\\)\\)\")",
-      "Bash(del src\\\\components\\\\animated-number.tsx)"
+      "Bash(del src\\\\components\\\\animated-number.tsx)",
+      "PowerShell($edge = \"C:\\\\Program Files \\(x86\\)\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\"; if \\(-not \\(Test-Path $edge\\)\\) { $edge = \"C:\\\\Program Files\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\" }; if \\(Test-Path $edge\\) { Write-Output \"Found Edge at: $edge\" } else { Write-Output \"Edge NOT found at standard paths\" })",
+      "Bash(git fetch *)"
     ]
   }
 }
