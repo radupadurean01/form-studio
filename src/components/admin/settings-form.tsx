@@ -64,6 +64,10 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
     contact_email: settings.contact_email,
     contact_phone: settings.contact_phone,
     address: settings.address,
+    company_name: settings.company_name,
+    company_cui: settings.company_cui,
+    company_registry: settings.company_registry,
+    company_address: settings.company_address,
     closing_eyebrow: settings.closing_eyebrow,
     closing_title_html: settings.closing_title_html,
     closing_button_label: settings.closing_button_label,
@@ -249,6 +253,19 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         <p className="font-body text-sm text-muted">
           Anul curent este adăugat automat la final.
         </p>
+      </Card>
+
+      {/* Date firmă (legal) */}
+      <Card title="Date firmă (legal)">
+        <p className="font-body text-sm text-muted mb-2">
+          Aceste date sunt afișate în footer și sunt obligatorii conform Legii 365/2002 (comerț electronic). Înlocuiește valorile dummy cu cele reale ale firmei.
+        </p>
+        <Text label="Denumire firmă" value={form.company_name} onChange={(v) => update("company_name", v)} placeholder="Form Studio SRL" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Text label="CUI / CIF" value={form.company_cui} onChange={(v) => update("company_cui", v)} placeholder="RO12345678" />
+          <Text label="Nr. Registrul Comerțului" value={form.company_registry} onChange={(v) => update("company_registry", v)} placeholder="J40/1234/2025" />
+        </div>
+        <Text label="Sediu social" value={form.company_address} onChange={(v) => update("company_address", v)} placeholder="Str. Exemplu nr. 1, București" />
       </Card>
 
       {/* Social & app links */}

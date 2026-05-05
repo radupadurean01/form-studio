@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useEffect, useState } from "react";
 import { submitContact, type ContactState } from "@/app/actions";
 
@@ -113,6 +114,14 @@ export function ContactForm() {
       >
         {pending ? "Se trimite..." : "Trimite mesajul →"}
       </button>
+
+      <p className="font-body text-xs text-ink-muted leading-relaxed">
+        Prin trimiterea formularului, ești de acord cu prelucrarea datelor tale conform{" "}
+        <Link href="/privacy" className="underline hover:text-terracotta transition-colors">
+          politicii de confidențialitate
+        </Link>
+        .
+      </p>
     </form>
   );
 }

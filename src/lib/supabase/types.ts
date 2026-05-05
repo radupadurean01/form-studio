@@ -52,6 +52,10 @@ export interface Database {
           contact_email: string;
           contact_phone: string;
           address: string;
+          company_name: string;
+          company_cui: string;
+          company_registry: string;
+          company_address: string;
           closing_eyebrow: string;
           closing_title_html: string;
           closing_button_label: string;
@@ -114,6 +118,10 @@ export interface Database {
           contact_email?: string;
           contact_phone?: string;
           address?: string;
+          company_name?: string;
+          company_cui?: string;
+          company_registry?: string;
+          company_address?: string;
           closing_eyebrow?: string;
           closing_title_html?: string;
           closing_button_label?: string;
@@ -176,6 +184,10 @@ export interface Database {
           contact_email?: string;
           contact_phone?: string;
           address?: string;
+          company_name?: string;
+          company_cui?: string;
+          company_registry?: string;
+          company_address?: string;
           closing_eyebrow?: string;
           closing_title_html?: string;
           closing_button_label?: string;

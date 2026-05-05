@@ -106,7 +106,48 @@ export async function Footer() {
         >
           Cookie-uri
         </Link>
+        <a
+          href="https://anpc.ro/ce-este-sal/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-on-dark/60 hover:text-on-dark transition-colors"
+        >
+          ANPC SAL
+        </a>
+        <a
+          href="https://ec.europa.eu/consumers/odr"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-on-dark/60 hover:text-on-dark transition-colors"
+        >
+          Soluționare online
+        </a>
       </nav>
+
+      {settings?.company_name && (
+        <div className="font-body text-[12px] text-on-dark/45 max-w-[640px] mx-auto leading-relaxed mb-3">
+          <span>{settings.company_name}</span>
+          {settings.company_registry && (
+            <>
+              {" · "}
+              <span>Reg. Com. {settings.company_registry}</span>
+            </>
+          )}
+          {settings.company_cui && (
+            <>
+              {" · "}
+              <span>CUI {settings.company_cui}</span>
+            </>
+          )}
+          {settings.company_address && (
+            <>
+              <br />
+              <span>{settings.company_address}</span>
+            </>
+          )}
+        </div>
+      )}
+
       <div className="font-body text-[13px]">
         {settings?.footer_tagline ?? "Form Studio"} ·{" "}
         {new Date().getFullYear()}
