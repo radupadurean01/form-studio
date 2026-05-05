@@ -24,21 +24,13 @@ export async function Hero() {
         aria-hidden
       />
 
-      {/* Glassy gradient — image clear at top, frosted dark at bottom for text legibility */}
+      {/* Soft bottom attenuation — extra contrast where the text sits */}
       <div
         className="absolute inset-0 pointer-events-none"
+        aria-hidden
         style={{
           background:
-            "linear-gradient(180deg, rgba(26,24,21,0) 0%, rgba(26,24,21,0.05) 30%, rgba(26,24,21,0.5) 65%, rgba(26,24,21,0.92) 100%)",
-        }}
-      />
-      <div
-        className="absolute inset-x-0 bottom-0 h-1/3 pointer-events-none backdrop-blur-[2px]"
-        style={{
-          maskImage:
-            "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,1) 100%)",
-          WebkitMaskImage:
-            "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,1) 100%)",
+            "linear-gradient(180deg, rgba(26,24,21,0) 50%, rgba(26,24,21,0.35) 100%)",
         }}
       />
 
